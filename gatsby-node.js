@@ -64,6 +64,7 @@ exports.createPages = async ({ graphql, actions }) => {
     const authorTemplate = path.resolve(`./src/templates/author.js`)
     const pageTemplate = path.resolve(`./src/templates/page.js`)
     const postTemplate = path.resolve(`./src/templates/post.js`)
+    const postAmpTemplate = path.resolve(`./src/templates/post.amp.js`)
 
     // Create tag pages
     tags.forEach(({ node }) => {
@@ -181,6 +182,18 @@ exports.createPages = async ({ graphql, actions }) => {
                 // Data passed to context is available
                 // in page queries as GraphQL variables.
                 slug: node.slug,
+                amp: false,
+            },
+        })
+
+        createPage({
+            path: `${node.url}/amp`,
+            component: postAmpTemplate,
+            context: {
+                // Data passed to context is available
+                // in page queries as GraphQL variables.
+                slug: node.slug,
+                amp: true,
             },
         })
     })

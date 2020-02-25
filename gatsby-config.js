@@ -4,6 +4,7 @@ const config = require(`./src/utils/siteConfig`)
 const generateRSSFeed = require(`./src/utils/rss/generate-feed`)
 
 let ghostConfig
+let ghostHostUrl
 
 try {
     ghostConfig = require(`./.ghost`)
@@ -16,7 +17,7 @@ try {
     }
 } finally {
     const { apiUrl, contentApiKey } = process.env.NODE_ENV === `development` ? ghostConfig.development : ghostConfig.production
-
+    ghostHostUrl = apiUrl
     if (!apiUrl || !contentApiKey || contentApiKey.match(/<key>/)) {
         throw new Error(`GHOST_API_URL and GHOST_CONTENT_API_KEY are required to build. Check the README.`) // eslint-disable-line
     }
@@ -177,6 +178,17 @@ module.exports = {
                 ],
                 createLinkInHead: true,
                 addUncaughtPages: true,
+            },
+        },
+        {
+            resolve: `gatsby-plugin-amp`,
+            options: {
+                canonicalBaseUrl: ghostHostUrl,
+                components: [`amp-form`],
+                excludedPaths: [`/404*`, `/`],
+                pathIdentifier: `amp/`,
+                relAmpHtmlPattern: `{{canonicalBaseUrl}}{{pathname}}{{pathIdentifier}}`,
+                useAmpClientIdApi: true,
             },
         },
         `gatsby-plugin-catch-links`,

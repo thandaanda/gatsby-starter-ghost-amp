@@ -18,7 +18,7 @@ import '../../styles/app.css'
 * styles, and meta data for each page.
 *
 */
-const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
+const DefaultLayout = ({ data, children, bodyClass, isHome, amp }) => {
     const site = data.allGhostSettings.edges[0].node
     const twitterUrl = site.twitter ? `https://twitter.com/${site.twitter.replace(/^@/, ``)}` : null
     const facebookUrl = site.facebook ? `https://www.facebook.com/${site.facebook.replace(/^\//, ``)}` : null
@@ -27,7 +27,7 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
         <>
             <Helmet>
                 <html lang={site.lang} />
-                <style type="text/css">{`${site.codeinjection_styles}`}</style>
+                {!amp && <style type="text/css">{`${site.codeinjection_styles}`}</style>}
                 <body className={bodyClass} />
             </Helmet>
 
@@ -105,6 +105,7 @@ DefaultLayout.propTypes = {
         file: PropTypes.object,
         allGhostSettings: PropTypes.object.isRequired,
     }).isRequired,
+    amp: PropTypes.bool,
 }
 
 const DefaultLayoutSettingsQuery = props => (

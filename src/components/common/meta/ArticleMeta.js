@@ -11,7 +11,7 @@ import config from '../../../utils/siteConfig'
 
 import { tags as tagsHelper } from '@tryghost/helpers'
 
-const ArticleMetaGhost = ({ data, settings, canonical }) => {
+const ArticleMetaGhost = ({ data, settings, canonical, amp }) => {
     const ghostPost = data
     settings = settings.allGhostSettings.edges[0].node
 
@@ -63,7 +63,7 @@ const ArticleMetaGhost = ({ data, settings, canonical }) => {
             <Helmet>
                 <title>{ghostPost.meta_title || ghostPost.title}</title>
                 <meta name="description" content={ghostPost.meta_description || ghostPost.excerpt} />
-                <link rel="canonical" href={canonical} />
+                {!amp && <link rel="canonical" href={canonical} /> }
 
                 <meta property="og:site_name" content={settings.title} />
                 <meta property="og:type" content="article" />
@@ -148,6 +148,7 @@ ArticleMetaGhost.propTypes = {
         allGhostSettings: PropTypes.object.isRequired,
     }).isRequired,
     canonical: PropTypes.string.isRequired,
+    amp: PropTypes.bool,
 }
 
 const ArticleMetaQuery = props => (

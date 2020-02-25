@@ -20,6 +20,7 @@ const MetaData = ({
     description,
     image,
     location,
+    amp,
 }) => {
     const canonical = url.resolve(config.siteUrl, location.pathname)
     const { ghostPost, ghostTag, ghostAuthor, ghostPage } = data
@@ -30,6 +31,7 @@ const MetaData = ({
             <ArticleMeta
                 data={ghostPost}
                 canonical={canonical}
+                amp={amp}
             />
         )
     } else if (ghostTag) {
@@ -95,6 +97,7 @@ MetaData.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     image: PropTypes.string,
+    amp: PropTypes.bool,
 }
 
 const MetaDataQuery = props => (
