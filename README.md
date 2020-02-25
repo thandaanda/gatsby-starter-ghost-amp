@@ -2,7 +2,7 @@
 
 A starter template to build lightning fast websites with [Ghost](https://ghost.org) & [Gatsby](https://gatsbyjs.org)
 
-**Demo:** https://gatsby.ghost.org
+**Demo:** https://inspiring-ardinghelli-c796de.netlify.com/
 
 &nbsp;
 
@@ -15,13 +15,13 @@ A starter template to build lightning fast websites with [Ghost](https://ghost.o
 
 ```bash
 # With Gatsby CLI
-gatsby new gatsby-starter-ghost https://github.com/TryGhost/gatsby-starter-ghost.git
+gatsby new gatsby-starter-ghost-amp https://github.com/thandaanda/gatsby-starter-ghost-amp.git
 ```
 
 ```bash
 # From Source
-git clone https://github.com/TryGhost/gatsby-starter-ghost.git
-cd gatsby-starter-ghost
+git clone https://github.com/thandaanda/gatsby-starter-ghost-amp.git
+cd gatsby-starter-ghost-amp
 ```
 
 Then install dependencies
@@ -69,19 +69,36 @@ The default Ghost version that is used for this starter is `3.x`. If your Ghost 
 
 &nbsp;
 
+# View AMP Pages
+
+ALl the blog post pages are converted to AMP by default. You can view them at `/amp`.
+
+**Example**
+
+```bash
+# Without AMP Page
+https://inspiring-ardinghelli-c796de.netlify.com/about
+
+# With AMP Page
+https://inspiring-ardinghelli-c796de.netlify.com/about/amp/
+```
+
+&nbsp;
+
 # Deploying with Netlify
 
 The starter contains three config files specifically for deploying with Netlify. A `netlify.toml` file for build settings, a `/static/_headers` file with default security headers set for all routes, and `/static/_redirects` to set Netlify custom domain redirects.
 
 To deploy to your Netlify account, hit the button below.
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/TryGhost/gatsby-starter-ghost)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/thandaanda/gatsby-starter-ghost-amp)
 
 Content API Keys are generally not considered to be sensitive information, they exist so that they can be changed in the event of abuse; so most people commit it directly to their `.ghost.json` config file. If you prefer to keep this information out of your repository you can remove this config and set [Netlify ENV variables](https://www.netlify.com/docs/continuous-deployment/#build-environment-variables) for production builds instead.
 
 Once deployed, you can set up a [Ghost + Netlify Integration](https://docs.ghost.org/integrations/netlify/) to use deploy hooks from Ghost to trigger Netlify rebuilds. That way, any time data changes in Ghost, your site will rebuild on Netlify.
 
 &nbsp;
+
 
 # Optimising
 
