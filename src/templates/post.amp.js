@@ -5,6 +5,7 @@ import Helmet from 'react-helmet'
 
 import { Layout } from '../components/common'
 import { MetaData } from '../components/common/meta'
+import './../styles/post.amp.css'
 
 /**
 * Single post view (/:slug)
@@ -32,8 +33,8 @@ const Post = (postData) => {
                 <div className="container">
                     <article className="content">
                         { post.feature_image ?
-                            <figure className="post-feature-image">
-                                <amp-img src={ post.feature_image } alt={ post.title } layout="responsive" />
+                            <figure className="amp-img-container">
+                                <amp-img src={ post.feature_image } class="contain" layout="fill" alt={ post.title } />
                             </figure> : null }
                         <section className="post-full-content">
                             <h1 className="content-title">{post.title}</h1>
